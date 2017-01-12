@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Tip Calculator";
+    [self.billTextField becomeFirstResponder];
     [self updateValues];
 }
 
@@ -57,5 +58,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"tipPercentDefault"];
 }
+
+
 
 @end
