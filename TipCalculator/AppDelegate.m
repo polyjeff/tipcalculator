@@ -14,6 +14,7 @@
 
 @implementation AppDelegate
 
+int CLEAR_FIELD_SECONDS = 300;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -21,9 +22,9 @@
     NSDate *lastDate = [defaults objectForKey:@"tipLastCloseDate"];
     NSTimeInterval timeDiff = [[NSDate date] timeIntervalSinceDate:lastDate];
     NSLog(@"application says Time since last close: %f", timeDiff);
-    if (timeDiff > 600) {
+    if (timeDiff > CLEAR_FIELD_SECONDS) {
         NSLog(@"Nulling out billAmount");
-        [defaults setFloat:0.0 forKey:@"billAmount"];
+        [defaults setObject:@"" forKey:@"billAmount"];
         [defaults synchronize];
     }
     return YES;
@@ -50,9 +51,9 @@
     NSDate *lastDate = [defaults objectForKey:@"tipLastCloseDate"];
     NSTimeInterval timeDiff = [[NSDate date] timeIntervalSinceDate:lastDate];
     NSLog(@"applicationWillEnterForeground says Time since last close: %f", timeDiff);
-    if (timeDiff > 600) {
+    if (timeDiff > CLEAR_FIELD_SECONDS) {
         NSLog(@"Nulling out billAmount");
-        [defaults setFloat:0.0 forKey:@"billAmount"];
+        [defaults setObject:@"" forKey:@"billAmount"];
         [defaults synchronize];
     }
 }
